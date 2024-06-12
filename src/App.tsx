@@ -3,6 +3,7 @@ import Card from './components/Card';
 import AttemptsCounter from './components/AttemptsCounter';
 import { randomizeCards } from './lib/utils';
 import type { Card as CardType } from './types/Card';
+import Timer from './components/Timer';
 
 const cardsTemplate: CardType[] = [
 	{ id: 0, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
@@ -24,11 +25,14 @@ const cardsTemplate: CardType[] = [
 ];
 
 function App() {
-	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
+	// const [cards, setCards] = useState(randomizeCards(cardsTemplate));
+	const [cards, setCards] = useState(cardsTemplate);
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 	const [preventClick, setPreventClick] = useState(false);
 	const [moveCounter, setMoveCounter] = useState(0);
+	const [time, setTime] = useState(0);
+	const [isTimeStopped, setIsTimeStopped] = useState(false);
 
 	const onCardClick = (id: number) => {
 		if (preventClick) return;
@@ -44,12 +48,25 @@ function App() {
 	};
 
 	useEffect(() => {
+		let timerInterval: number;
+
+		if (!isTimeStopped) {
+			timerInterval = setInterval(() => {
+				setTime((prevTime) => prevTime + 1);
+			}, 1000);
+		}
+
+		return () => clearInterval(timerInterval);
+	}, [isTimeStopped]);
+
+	useEffect(() => {
 		if (guessedCardsNumber === 16) {
+			setIsTimeStopped(true);
 			setTimeout(() => {
-				alert('You won!');
+				alert(`You won! Attempts: ${moveCounter}, Time: ${time} seconds :)`);
 			}, 200);
 		}
-	}, [guessedCardsNumber]);
+	}, [guessedCardsNumber, moveCounter, time]);
 
 	useEffect(() => {
 		if (openCardsNumber === 2) {
@@ -92,8 +109,9 @@ function App() {
 
 	return (
 		<main className='min-h-screen p-16 flex flex-col gap-10 justify-center items-center'>
-			<div>
+			<div className='flex gap-4'>
 				<AttemptsCounter attempts={moveCounter} />
+				<Timer time={time} />
 			</div>
 			<div className='grid grid-cols-4 grid-rows-4 gap-4'>
 				{cards.map((card) => (
