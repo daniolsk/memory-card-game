@@ -41,8 +41,11 @@ function App() {
 	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
+	const [preventClick, setPreventClick] = useState(false);
 
 	const onCardClick = (id: number) => {
+		if (preventClick) return;
+
 		const cardIndex = cards.findIndex((card) => card.id === id);
 
 		if (cards[cardIndex].isOpen || cards[cardIndex].isGuessed) return;
@@ -80,25 +83,20 @@ function App() {
 					setOpenCardsNumber(0);
 					setGuessedCardsNumber((guessedCardsNumber) => guessedCardsNumber + 2);
 				} else {
-					newCards.forEach((card) => {
-						if (card.isOpen && !card.isGuessed) {
-							card.isOpen = false;
-						}
-					});
+					setPreventClick(true);
 
 					setTimeout(() => {
+						newCards.forEach((card) => {
+							if (card.isOpen && !card.isGuessed) {
+								card.isOpen = false;
+							}
+						});
+
 						setCards(newCards);
 						setOpenCardsNumber(0);
+						setPreventClick(false);
 					}, 700);
 				}
-			} else {
-				newCards.forEach((card) => {
-					if (card.isOpen && !card.isGuessed) {
-						card.isOpen = false;
-					}
-				});
-				setCards(newCards);
-				setOpenCardsNumber(0);
 			}
 		}
 	}, [openCardsNumber, cards]);
