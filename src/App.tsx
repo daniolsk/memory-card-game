@@ -25,8 +25,7 @@ const cardsTemplate: CardType[] = [
 ];
 
 function App() {
-	// const [cards, setCards] = useState(randomizeCards(cardsTemplate));
-	const [cards, setCards] = useState(cardsTemplate);
+	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 	const [preventClick, setPreventClick] = useState(false);
@@ -139,7 +138,7 @@ function App() {
 						setMoveCounter(0);
 						setTime(0);
 					}}
-					className='border-2 rounded-xl px-4 py-2'
+					className='border-2 border-black rounded-xl px-4 py-2 hover:bg-gray-200'
 				>
 					Restart
 				</button>
