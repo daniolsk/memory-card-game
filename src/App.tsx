@@ -134,9 +134,12 @@ function App() {
 								isGuessed: false,
 							}))
 						);
+						setGuessedCardsNumber(0);
 						setOpenCardsNumber(0);
 						setMoveCounter(0);
 						setTime(0);
+						setIsTimeStopped(false);
+						setPreventClick(false);
 					}}
 					className='border-2 border-black rounded-xl px-4 py-2 hover:bg-gray-200'
 				>
