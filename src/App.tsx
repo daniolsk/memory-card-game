@@ -137,6 +137,7 @@ function App() {
 						);
 						setOpenCardsNumber(0);
 						setMoveCounter(0);
+						setTime(0);
 					}}
 					className='border-2 rounded-xl px-4 py-2'
 				>
