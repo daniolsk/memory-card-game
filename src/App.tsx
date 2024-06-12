@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
+import AttemptsCounter from './components/AttemptsCounter';
 
 type Card = {
 	id: number;
@@ -42,6 +43,7 @@ function App() {
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 	const [preventClick, setPreventClick] = useState(false);
+	const [moveCounter, setMoveCounter] = useState(0);
 
 	const onCardClick = (id: number) => {
 		if (preventClick) return;
@@ -81,9 +83,11 @@ function App() {
 
 					setCards(newCards);
 					setOpenCardsNumber(0);
+					setMoveCounter((moveCounter) => moveCounter + 1);
 					setGuessedCardsNumber((guessedCardsNumber) => guessedCardsNumber + 2);
 				} else {
 					setPreventClick(true);
+					setMoveCounter((moveCounter) => moveCounter + 1);
 
 					setTimeout(() => {
 						newCards.forEach((card) => {
@@ -103,6 +107,9 @@ function App() {
 
 	return (
 		<main className='min-h-screen p-16 flex flex-col gap-10 justify-center items-center'>
+			<div>
+				<AttemptsCounter attempts={moveCounter} />
+			</div>
 			<div className='grid grid-cols-4 grid-rows-4 gap-4'>
 				{cards.map((card) => (
 					<Card
@@ -126,6 +133,7 @@ function App() {
 							}))
 						);
 						setOpenCardsNumber(0);
+						setMoveCounter(0);
 					}}
 					className='border-2 rounded-xl px-4 py-2'
 				>
