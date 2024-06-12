@@ -9,12 +9,11 @@ function Card({
 	cardNumber: number;
 	isOpen: boolean;
 	isGuessed: boolean;
-	onCardClick: (id: number, cardNumber: number) => void;
+	onCardClick: (id: number) => void;
 }) {
 	return (
 		<div
-			key={id}
-			onClick={() => onCardClick(id, cardNumber)}
+			onClick={() => onCardClick(id)}
 			className={`${isOpen ? 'bg-green-500' : 'bg-red-500'} ${
 				isGuessed ? 'bg-blue-500' : ''
 			} w-32 h-32 flex justify-center items-center cursor-pointer`}
