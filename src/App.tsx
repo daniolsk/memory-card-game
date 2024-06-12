@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from './components/Card';
 
 const cardsTemplate = [
@@ -22,6 +22,21 @@ const cardsTemplate = [
 
 function App() {
 	const [cards, setCards] = useState(cardsTemplate);
+	const [openCardsNumber, setOpenCardsNumber] = useState(0);
+
+	const onCardClick = (id: number, cardNumber: number) => {
+		const newCards = [...cards];
+		newCards[id].isOpen = true;
+		setCards(newCards);
+		setOpenCardsNumber(openCardsNumber + 1);
+	};
+
+	useEffect(() => {
+		if (openCardsNumber === 2) {
+			alert('2 Cards opened!');
+		}
+	}, [openCardsNumber]);
+
 	return (
 		<main className='min-h-screen p-16 flex flex-col gap-10 justify-center items-center'>
 			<div className='grid grid-cols-4 grid-rows-4 gap-4'>
@@ -31,6 +46,7 @@ function App() {
 						cardNumber={card.cardNumber}
 						isOpen={card.isOpen}
 						isGuessed={card.isGuessed}
+						onCardClick={onCardClick}
 					/>
 				))}
 			</div>

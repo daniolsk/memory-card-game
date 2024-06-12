@@ -2,20 +2,28 @@ function Card({
 	id,
 	cardNumber,
 	isOpen,
+	isGuessed,
+	onCardClick,
 }: {
 	id: number;
 	cardNumber: number;
 	isOpen: boolean;
 	isGuessed: boolean;
+	onCardClick: (id: number, cardNumber: number) => void;
 }) {
 	return (
 		<div
 			key={id}
-			className={`${
-				isOpen ? 'bg-green-500' : 'bg-red-500'
+			onClick={() => onCardClick(id, cardNumber)}
+			className={`${isOpen ? 'bg-green-500' : 'bg-red-500'} ${
+				isGuessed ? 'bg-blue-500' : ''
 			} w-32 h-32 flex justify-center items-center cursor-pointer`}
 		>
-			<span className='text-4xl'>{isOpen ? cardNumber : '?'}</span>
+			{isGuessed ? (
+				<span className='text-4xl'>{cardNumber}</span>
+			) : (
+				<span className='text-4xl'>{isOpen ? cardNumber : '?'}</span>
+			)}
 		</div>
 	);
 }
