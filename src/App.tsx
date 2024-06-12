@@ -2,15 +2,9 @@ import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import AttemptsCounter from './components/AttemptsCounter';
 
-type Card = {
-	id: number;
-	image: string;
-	cardNumber: number;
-	isOpen: boolean;
-	isGuessed: boolean;
-};
+import type { Card as CardType } from './types/Card';
 
-const cardsTemplate: Card[] = [
+const cardsTemplate: CardType[] = [
 	{ id: 0, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
 	{ id: 1, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
 	{ id: 2, image: '', cardNumber: 1, isOpen: false, isGuessed: false },
@@ -29,7 +23,7 @@ const cardsTemplate: Card[] = [
 	{ id: 15, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
 ];
 
-const randomizeCards = (array: Card[]) => {
+const randomizeCards = (array: CardType[]) => {
 	for (let i = array.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[array[i], array[j]] = [array[j], array[i]];
