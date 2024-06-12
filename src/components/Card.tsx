@@ -1,3 +1,5 @@
+import { cn } from '../lib/utils';
+
 function Card({
 	id,
 	cardNumber,
@@ -13,16 +15,33 @@ function Card({
 }) {
 	return (
 		<div
+			className='w-32 h-32 bg-transparent'
+			style={{ perspective: '1000px' }}
 			onClick={() => onCardClick(id)}
-			className={`${isOpen ? 'bg-green-500' : 'bg-red-500'} ${
-				isGuessed ? 'bg-blue-500' : ''
-			} w-32 h-32 flex justify-center items-center cursor-pointer`}
 		>
-			{isGuessed ? (
-				<span className='text-4xl'>{cardNumber}</span>
-			) : (
-				<span className='text-4xl'>{isOpen ? cardNumber : '?'}</span>
-			)}
+			<div
+				className='relative w-full h-full text-center transition-transform duration-[0.8s]'
+				style={{
+					transformStyle: 'preserve-3d',
+					transform: isOpen ? 'rotateY(180deg)' : '',
+				}}
+			>
+				<div
+					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-gray-300'
+					style={{ backfaceVisibility: 'hidden' }}
+				>
+					<span className='font-bold text-2xl'>?</span>
+				</div>
+				<div
+					className={cn(
+						'shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-gray-300',
+						isGuessed ? 'border-green-500' : ''
+					)}
+					style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
+				>
+					<span className='font-bold text-2xl'>{cardNumber}</span>
+				</div>
+			</div>
 		</div>
 	);
 }
