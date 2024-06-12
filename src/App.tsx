@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import AttemptsCounter from './components/AttemptsCounter';
-
+import { randomizeCards } from './lib/utils';
 import type { Card as CardType } from './types/Card';
 
 const cardsTemplate: CardType[] = [
@@ -22,15 +22,6 @@ const cardsTemplate: CardType[] = [
 	{ id: 14, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
 	{ id: 15, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
 ];
-
-const randomizeCards = (array: CardType[]) => {
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-
-	return array;
-};
 
 function App() {
 	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
