@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 
-const cardsTemplate = [
+type Card = {
+	id: number;
+	image: string;
+	cardNumber: number;
+	isOpen: boolean;
+	isGuessed: boolean;
+};
+
+const cardsTemplate: Card[] = [
 	{ id: 0, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
 	{ id: 1, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
 	{ id: 2, image: '', cardNumber: 1, isOpen: false, isGuessed: false },
@@ -20,8 +28,17 @@ const cardsTemplate = [
 	{ id: 15, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
 ];
 
+const randomizeCards = (array: Card[]) => {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+
+	return array;
+};
+
 function App() {
-	const [cards, setCards] = useState(cardsTemplate);
+	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 
@@ -37,7 +54,6 @@ function App() {
 	};
 
 	useEffect(() => {
-		console.log(guessedCardsNumber);
 		if (guessedCardsNumber === 16) {
 			setTimeout(() => {
 				alert('You won!');
