@@ -23,6 +23,7 @@ const cardsTemplate = [
 function App() {
 	const [cards, setCards] = useState(cardsTemplate);
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
+	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 
 	const onCardClick = (id: number) => {
 		const cardIndex = cards.findIndex((card) => card.id === id);
@@ -34,6 +35,15 @@ function App() {
 		setCards(newCards);
 		setOpenCardsNumber(openCardsNumber + 1);
 	};
+
+	useEffect(() => {
+		console.log(guessedCardsNumber);
+		if (guessedCardsNumber === 16) {
+			setTimeout(() => {
+				alert('You won!');
+			}, 200);
+		}
+	}, [guessedCardsNumber]);
 
 	useEffect(() => {
 		if (openCardsNumber === 2) {
@@ -52,6 +62,7 @@ function App() {
 
 					setCards(newCards);
 					setOpenCardsNumber(0);
+					setGuessedCardsNumber((guessedCardsNumber) => guessedCardsNumber + 2);
 				} else {
 					newCards.forEach((card) => {
 						if (card.isOpen && !card.isGuessed) {
