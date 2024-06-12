@@ -1,31 +1,11 @@
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import AttemptsCounter from './components/AttemptsCounter';
-import { randomizeCards } from './lib/utils';
-import type { Card as CardType } from './types/Card';
+import { generateCards, randomizeCards } from './lib/utils';
 import Timer from './components/Timer';
 
-const cardsTemplate: CardType[] = [
-	{ id: 0, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
-	{ id: 1, image: '', cardNumber: 0, isOpen: false, isGuessed: false },
-	{ id: 2, image: '', cardNumber: 1, isOpen: false, isGuessed: false },
-	{ id: 3, image: '', cardNumber: 1, isOpen: false, isGuessed: false },
-	{ id: 4, image: '', cardNumber: 2, isOpen: false, isGuessed: false },
-	{ id: 5, image: '', cardNumber: 2, isOpen: false, isGuessed: false },
-	{ id: 6, image: '', cardNumber: 3, isOpen: false, isGuessed: false },
-	{ id: 7, image: '', cardNumber: 3, isOpen: false, isGuessed: false },
-	{ id: 8, image: '', cardNumber: 4, isOpen: false, isGuessed: false },
-	{ id: 9, image: '', cardNumber: 4, isOpen: false, isGuessed: false },
-	{ id: 10, image: '', cardNumber: 5, isOpen: false, isGuessed: false },
-	{ id: 11, image: '', cardNumber: 5, isOpen: false, isGuessed: false },
-	{ id: 12, image: '', cardNumber: 6, isOpen: false, isGuessed: false },
-	{ id: 13, image: '', cardNumber: 6, isOpen: false, isGuessed: false },
-	{ id: 14, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
-	{ id: 15, image: '', cardNumber: 7, isOpen: false, isGuessed: false },
-];
-
 function App() {
-	const [cards, setCards] = useState(randomizeCards(cardsTemplate));
+	const [cards, setCards] = useState(randomizeCards(generateCards(8)));
 	const [openCardsNumber, setOpenCardsNumber] = useState(0);
 	const [guessedCardsNumber, setGuessedCardsNumber] = useState(0);
 	const [preventClick, setPreventClick] = useState(false);
@@ -117,13 +97,7 @@ function App() {
 				<div>
 					<button
 						onClick={() => {
-							setCards(
-								cardsTemplate.map((card) => ({
-									...card,
-									isOpen: false,
-									isGuessed: false,
-								}))
-							);
+							setCards(randomizeCards(generateCards(8)));
 							setGuessedCardsNumber(0);
 							setOpenCardsNumber(0);
 							setMoveCounter(0);

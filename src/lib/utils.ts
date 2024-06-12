@@ -14,3 +14,17 @@ export const randomizeCards = (array: Card[]) => {
 
 	return array;
 };
+
+export const generateCards = (amountOfPairs: number) => {
+	const cards: Card[] = [];
+	let id = 0;
+
+	for (let i = 0; i < amountOfPairs; i++) {
+		cards.push(
+			{ id: id++, cardNumber: i, isOpen: false, isGuessed: false },
+			{ id: id++, cardNumber: i, isOpen: false, isGuessed: false }
+		);
+	}
+
+	return cards;
+};
