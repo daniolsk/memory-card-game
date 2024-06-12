@@ -27,7 +27,7 @@ function Card({
 				}}
 			>
 				<div
-					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-gray-300'
+					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-red-400 cursor-pointer hover:bg-red-500'
 					style={{ backfaceVisibility: 'hidden' }}
 				>
 					<span className='font-bold text-2xl'>?</span>

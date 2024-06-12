@@ -110,6 +110,7 @@ function App() {
 		<main className='min-h-screen p-16 flex flex-col gap-10 justify-center items-center'>
 			<div className='flex gap-4'>
 				<AttemptsCounter attempts={moveCounter} />
+				<span>/</span>
 				<Timer time={time} />
 			</div>
 			<div className='grid grid-cols-4 grid-rows-4 gap-4'>
@@ -141,7 +142,7 @@ function App() {
 						setIsTimeStopped(false);
 						setPreventClick(false);
 					}}
-					className='border-2 border-black rounded-xl px-4 py-2 hover:bg-gray-200'
+					className='border-2 border-black rounded-xl px-4 py-2 bg-white hover:bg-slate-100'
 				>
 					Restart
 				</button>
