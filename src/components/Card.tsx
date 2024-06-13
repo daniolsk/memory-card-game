@@ -2,13 +2,13 @@ import { cn } from '../lib/utils';
 
 function Card({
 	id,
-	cardNumber,
+	cardContent,
 	isOpen,
 	isGuessed,
 	onCardClick,
 }: {
 	id: number;
-	cardNumber: number;
+	cardContent: string;
 	isOpen: boolean;
 	isGuessed: boolean;
 	onCardClick: (id: number) => void;
@@ -27,7 +27,7 @@ function Card({
 				}}
 			>
 				<div
-					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-red-400 cursor-pointer hover:bg-red-500'
+					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-red-400 cursor-pointer transition-all hover:bg-red-500'
 					style={{ backfaceVisibility: 'hidden' }}
 				>
 					<span className='font-bold text-2xl'>?</span>
@@ -39,7 +39,7 @@ function Card({
 					)}
 					style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
 				>
-					<span className='font-bold text-2xl'>{cardNumber}</span>
+					<span className='font-bold text-2xl'>{cardContent}</span>
 				</div>
 			</div>
 		</div>

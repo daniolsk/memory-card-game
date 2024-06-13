@@ -2,6 +2,34 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Card } from '../types/Card';
 
+const emojis = [
+	'😀',
+	'😭',
+	'😱',
+	'😈',
+	'👻',
+	'💩',
+	'🤖',
+	'👽',
+	'👾',
+	'🎃',
+	'😺',
+	'🙀',
+	'💀',
+	'👹',
+	'🤡',
+	'🧙‍♂️',
+	'🧛‍♀️',
+	'🦄',
+	'🐉',
+	'🦊',
+	'🦋',
+	'🌵',
+	'🌈',
+	'🔥',
+	'💧',
+];
+
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
@@ -21,8 +49,8 @@ export const generateCards = (amountOfPairs: number) => {
 
 	for (let i = 0; i < amountOfPairs; i++) {
 		cards.push(
-			{ id: id++, cardNumber: i, isOpen: false, isGuessed: false },
-			{ id: id++, cardNumber: i, isOpen: false, isGuessed: false }
+			{ id: id++, cardContent: emojis[i], isOpen: false, isGuessed: false },
+			{ id: id++, cardContent: emojis[i], isOpen: false, isGuessed: false }
 		);
 	}
 

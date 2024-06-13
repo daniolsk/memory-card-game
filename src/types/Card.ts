@@ -1,6 +1,6 @@
 export type Card = {
 	id: number;
-	cardNumber: number;
+	cardContent: string;
 	isOpen: boolean;
 	isGuessed: boolean;
 };

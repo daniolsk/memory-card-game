@@ -55,7 +55,7 @@ function App() {
 			);
 
 			if (filteredCards.length === 2) {
-				if (filteredCards[0].cardNumber === filteredCards[1].cardNumber) {
+				if (filteredCards[0].cardContent === filteredCards[1].cardContent) {
 					newCards.forEach((card) => {
 						if (card.isOpen && !card.isGuessed) {
 							card.isGuessed = true;
@@ -116,7 +116,7 @@ function App() {
 					<Card
 						key={card.id}
 						id={card.id}
-						cardNumber={card.cardNumber}
+						cardContent={card.cardContent}
 						isOpen={card.isOpen}
 						isGuessed={card.isGuessed}
 						onCardClick={onCardClick}
