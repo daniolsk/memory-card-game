@@ -27,14 +27,14 @@ function Card({
 				}}
 			>
 				<div
-					className='shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-red-400 cursor-pointer transition-all hover:bg-red-500'
+					className='shadow-lg absolute flex justify-center items-center w-full h-full border-4 rounded-xl border-black bg-red-400 cursor-pointer transition-all hover:bg-red-500'
 					style={{ backfaceVisibility: 'hidden' }}
 				>
 					<span className='font-bold text-2xl'>?</span>
 				</div>
 				<div
 					className={cn(
-						'shadow-lg absolute flex justify-center items-center w-full h-full border-2 rounded-xl border-black bg-gray-300',
+						'shadow-lg absolute flex justify-center items-center w-full h-full border-4 rounded-xl border-black bg-gray-300',
 						isGuessed ? 'border-green-500' : ''
 					)}
 					style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}

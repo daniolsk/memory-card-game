@@ -105,7 +105,7 @@ function App() {
 							setIsTimeStopped(false);
 							setPreventClick(false);
 						}}
-						className='border-2 border-black rounded-xl px-4 py-2 bg-white hover:bg-slate-100'
+						className='border-2 border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
 					>
 						Restart
 					</button>
