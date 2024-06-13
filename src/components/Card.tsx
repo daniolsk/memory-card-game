@@ -21,7 +21,7 @@ function Card({
 		<div
 			className={cn(
 				'bg-transparent',
-				numOfPairs == 8 ? 'w-32 h-32' : 'w-28 h-28'
+				numOfPairs == 8 ? 'w-[12.5vh] h-[12.5vh]' : 'w-[12vh] h-[12vh]'
 			)}
 			style={{ perspective: '1000px' }}
 			onClick={() => onCardClick(id)}
