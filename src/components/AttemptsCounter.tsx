@@ -1,4 +1,8 @@
-function AttemptsCounter({ attempts }: { attempts: number }) {
+interface AttemptsCounterInterface {
+	attempts: number;
+}
+
+function AttemptsCounter({ attempts }: AttemptsCounterInterface) {
 	return (
 		<div className='flex text-xl gap-2'>
 			<span>Attempts:</span>

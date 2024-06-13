@@ -1,5 +1,14 @@
 import { cn } from '../lib/utils';
 
+interface CardInterface {
+	id: number;
+	cardContent: string;
+	isOpen: boolean;
+	isGuessed: boolean;
+	numOfPairs: number;
+	onCardClick: (id: number) => void;
+}
+
 function Card({
 	id,
 	cardContent,
@@ -7,14 +16,7 @@ function Card({
 	isGuessed,
 	numOfPairs,
 	onCardClick,
-}: {
-	id: number;
-	cardContent: string;
-	isOpen: boolean;
-	isGuessed: boolean;
-	numOfPairs: number;
-	onCardClick: (id: number) => void;
-}) {
+}: CardInterface) {
 	return (
 		<div
 			className={cn(

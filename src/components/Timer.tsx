@@ -1,4 +1,8 @@
-function AttemptsCounter({ time }: { time: number }) {
+interface TimerInterface {
+	time: number;
+}
+
+function Timer({ time }: TimerInterface) {
 	return (
 		<div className='flex text-xl gap-2'>
 			<span>Time:</span>
@@ -8,4 +12,4 @@ function AttemptsCounter({ time }: { time: number }) {
 	);
 }
 
-export default AttemptsCounter;
+export default Timer;

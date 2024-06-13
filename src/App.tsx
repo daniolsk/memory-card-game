@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Card from './components/Card';
-import AttemptsCounter from './components/AttemptsCounter';
 import { generateCards, randomizeCards } from './lib/utils';
+import AttemptsCounter from './components/AttemptsCounter';
+import Card from './components/Card';
 import Timer from './components/Timer';
 
 function App() {
