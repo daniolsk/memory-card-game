@@ -12,6 +12,7 @@ function App() {
 	const [moveCounter, setMoveCounter] = useState(0);
 	const [time, setTime] = useState(0);
 	const [isTimeStopped, setIsTimeStopped] = useState(false);
+	const [numberOfPairs, setNumberOfPairs] = useState(8);
 
 	const onCardClick = (id: number) => {
 		if (preventClick) return;
@@ -86,6 +87,19 @@ function App() {
 		}
 	}, [openCardsNumber, cards]);
 
+	const restartGame = (numOfPairs?: number) => {
+		if (!numOfPairs) numOfPairs = numberOfPairs;
+
+		setCards(randomizeCards(generateCards(numOfPairs)));
+		setNumberOfPairs(numOfPairs);
+		setGuessedCardsNumber(0);
+		setOpenCardsNumber(0);
+		setMoveCounter(0);
+		setTime(0);
+		setIsTimeStopped(false);
+		setPreventClick(false);
+	};
+
 	return (
 		<main className='min-h-screen p-16 flex flex-col items-center justify-center gap-8'>
 			<div className='flex items-center justify-center'>
@@ -104,23 +118,29 @@ function App() {
 						isOpen={card.isOpen}
 						isGuessed={card.isGuessed}
 						onCardClick={onCardClick}
+						numOfPairs={numberOfPairs}
 					/>
 				))}
 			</div>
-			<div className=''>
+			<div className='flex gap-4'>
 				<button
-					onClick={() => {
-						setCards(randomizeCards(generateCards(8)));
-						setGuessedCardsNumber(0);
-						setOpenCardsNumber(0);
-						setMoveCounter(0);
-						setTime(0);
-						setIsTimeStopped(false);
-						setPreventClick(false);
-					}}
-					className='border-4 border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
+					onClick={() => restartGame()}
+					className='border-4 font-semibold border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
 				>
 					Restart
+				</button>
+				<div className='flex-1 w-1 rounded-xl bg-white mx-4'></div>
+				<button
+					onClick={() => restartGame(8)}
+					className='border-4 font-semibold border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
+				>
+					4x4
+				</button>
+				<button
+					onClick={() => restartGame(10)}
+					className='border-4 font-semibold border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
+				>
+					4x5
 				</button>
 			</div>
 		</main>

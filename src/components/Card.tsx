@@ -5,17 +5,22 @@ function Card({
 	cardContent,
 	isOpen,
 	isGuessed,
+	numOfPairs,
 	onCardClick,
 }: {
 	id: number;
 	cardContent: string;
 	isOpen: boolean;
 	isGuessed: boolean;
+	numOfPairs: number;
 	onCardClick: (id: number) => void;
 }) {
 	return (
 		<div
-			className='w-32 h-32 bg-transparent'
+			className={cn(
+				'bg-transparent',
+				numOfPairs == 8 ? 'w-32 h-32' : 'w-28 h-28'
+			)}
 			style={{ perspective: '1000px' }}
 			onClick={() => onCardClick(id)}
 		>
