@@ -87,31 +87,15 @@ function App() {
 	}, [openCardsNumber, cards]);
 
 	return (
-		<main className='min-h-screen p-16 flex flex-col gap-8 justify-center items-center'>
-			<div className='flex w-[560px] items-center justify-between'>
+		<main className='min-h-screen p-16 flex flex-col items-center justify-center gap-8'>
+			<div className='flex items-center justify-center'>
 				<div className='flex gap-4'>
 					<AttemptsCounter attempts={moveCounter} />
 					<span>/</span>
 					<Timer time={time} />
 				</div>
-				<div>
-					<button
-						onClick={() => {
-							setCards(randomizeCards(generateCards(8)));
-							setGuessedCardsNumber(0);
-							setOpenCardsNumber(0);
-							setMoveCounter(0);
-							setTime(0);
-							setIsTimeStopped(false);
-							setPreventClick(false);
-						}}
-						className='border-2 border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
-					>
-						Restart
-					</button>
-				</div>
 			</div>
-			<div className='grid grid-cols-4 grid-rows-4 gap-4'>
+			<div className='grid grid-cols-4 grid-rows-4 gap-4 justify-center justify-items-center mx-auto'>
 				{cards.map((card) => (
 					<Card
 						key={card.id}
@@ -122,6 +106,22 @@ function App() {
 						onCardClick={onCardClick}
 					/>
 				))}
+			</div>
+			<div className=''>
+				<button
+					onClick={() => {
+						setCards(randomizeCards(generateCards(8)));
+						setGuessedCardsNumber(0);
+						setOpenCardsNumber(0);
+						setMoveCounter(0);
+						setTime(0);
+						setIsTimeStopped(false);
+						setPreventClick(false);
+					}}
+					className='border-4 border-white transition-all rounded-xl px-4 py-2 hover:bg-white hover:text-black'
+				>
+					Restart
+				</button>
 			</div>
 		</main>
 	);
